@@ -1,12 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import Splash from "./pages/Splash";
 import Snippets from "./pages/Snippets";
 import Profile from "./pages/Profile";
 import Error from "./pages/Error";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,7 +17,7 @@ root.render(
 				<Route index element={<Splash />} />
 
 				{/* View All Blogs Page */}
-				<Route path='/mysnippers' element={<Snippets />} />
+				<Route path='/mysnippets' element={<Snippets />} />
 
 				{/* Visit blog */}
 				<Route path='/profile' element={<Profile />} />
