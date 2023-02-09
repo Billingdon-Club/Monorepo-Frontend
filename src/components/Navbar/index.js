@@ -23,6 +23,10 @@ export default function Navbar(props) {
 
 	useEffect(() => {
 		authenticationCheckerFunction();
+		if (!isAuthenticated) {
+			setJwToken("");
+			localStorage.setItem("monorepo_jwt_token", "");
+		}
 	}, []);
 
 	return (
@@ -33,7 +37,10 @@ export default function Navbar(props) {
 
 			<div className='buttonTray'>
 				{isAuthenticated ? (
-					<HighlightableButton title='My Snippets' />
+					<>
+						<HighlightableButton title='My Snippets' />
+						<HighlightableButton title='Logout' />
+					</>
 				) : (
 					<>
 						<HighlightableButton title='Login' />

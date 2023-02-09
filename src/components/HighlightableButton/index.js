@@ -31,6 +31,14 @@ export default function HighlightableButton(props) {
 					<h2 className='highlightableButtonText'>{props.title}</h2>
 				</a>
 			);
+		case "Logout":
+			return (
+				<a
+					href={process.env.REACT_APP_BACKEND_URL + "/logout-direct"}
+					className='highlightableButton'>
+					<h2 className='highlightableButtonText'>{props.title}</h2>
+				</a>
+			);
 
 		default:
 			return <></>;

@@ -8,12 +8,13 @@ export default function Snippets(props) {
 
 	const getAccessToken = async () => {
 		const token = searchParams.has("t") ? searchParams.get("t") : null;
-		if (token || jwToken) {
+		if (token && (jwToken === null || jwToken == "null" || jwToken === "")) {
+			console.log(jwToken);
 			localStorage.setItem("monorepo_jwt_token", token ?? jwToken);
 			setJwToken(token ?? jwToken);
+			searchParams.delete("t");
+			setSearchParams(searchParams);
 		}
-		searchParams.delete("t");
-		setSearchParams(searchParams);
 	};
 	useEffect(() => {
 		getAccessToken();
