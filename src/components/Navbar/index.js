@@ -1,13 +1,20 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {MonorepoContext} from "../../context/MonorepoContext";
 import fetchInfo from "../../utils/fetchInfo";
 import HighlightableButton from "../HighlightableButton";
 import "./style.css";
 
 export default function Navbar(props) {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const {jwToken, setJwToken} = useContext(MonorepoContext);
 
 	const authenticationCheckerFunction = async () => {
-		const authenticationCheck = await fetchInfo("/isAuthenticated");
+		const authenticationCheck = await fetchInfo(
+			"/isAuthenticated",
+			"GET",
+			null,
+			jwToken
+		);
 		console.log(authenticationCheck);
 		if (authenticationCheck.isAuthenticated) {
 			setIsAuthenticated(true);

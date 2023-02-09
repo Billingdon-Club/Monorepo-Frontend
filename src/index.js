@@ -7,24 +7,27 @@ import Snippets from "./pages/Snippets";
 import Profile from "./pages/Profile";
 import Error from "./pages/Error";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {MonorepoProvider} from "./context/MonorepoContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<Routes>
-				{/* Homepage */}
-				<Route index element={<Splash />} />
+			<MonorepoProvider>
+				<Routes>
+					{/* Homepage */}
+					<Route index element={<Splash />} />
 
-				{/* View All Blogs Page */}
-				<Route path='/mysnippets' element={<Snippets />} />
+					{/* View All Blogs Page */}
+					<Route path='/mysnippets/' element={<Snippets />} />
 
-				{/* Visit blog */}
-				<Route path='/profile' element={<Profile />} />
+					{/* Visit blog */}
+					<Route path='/profile' element={<Profile />} />
 
-				{/* 404 error */}
-				<Route path='/error' element={<Error />} />
-			</Routes>
+					{/* 404 error */}
+					<Route path='/error' element={<Error />} />
+				</Routes>
+			</MonorepoProvider>
 		</BrowserRouter>
 	</React.StrictMode>
 );
