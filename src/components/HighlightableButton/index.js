@@ -10,7 +10,7 @@ export default function HighlightableButton(props) {
 					onClick={() => {
 						navigate("/mysnippets");
 					}}
-					className='highlightableButton'>
+					className='highlightableButton nudgedRight'>
 					<h2 className='highlightableButtonText'>{props.title}</h2>
 				</div>
 			);

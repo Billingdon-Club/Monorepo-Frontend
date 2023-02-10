@@ -11,7 +11,7 @@ export default function Snippets(props) {
 		if (token && (jwToken === null || jwToken == "null" || jwToken === "")) {
 			console.log(jwToken);
 			localStorage.setItem("monorepo_jwt_token", token ?? jwToken);
-			setJwToken(token ?? jwToken);
+			setJwToken(token);
 			searchParams.delete("t");
 			setSearchParams(searchParams);
 		}
