@@ -1,7 +1,11 @@
+import {useContext} from "react";
 import {useNavigate} from "react-router";
+import {MonorepoContext} from "../../context/MonorepoContext";
 import "./style.css";
 
 export default function HighlightableButton(props) {
+	const {setJwToken} = useContext(MonorepoContext);
+
 	const navigate = useNavigate();
 	switch (props.title) {
 		case "My Snippets":
@@ -35,7 +39,11 @@ export default function HighlightableButton(props) {
 			return (
 				<a
 					href={process.env.REACT_APP_BACKEND_URL + "/logout-direct"}
-					className='highlightableButton'>
+					className='highlightableButton'
+					onClick={() => {
+						setJwToken("");
+						localStorage.setItem("monorepo_jwt_token", "");
+					}}>
 					<h2 className='highlightableButtonText'>{props.title}</h2>
 				</a>
 			);

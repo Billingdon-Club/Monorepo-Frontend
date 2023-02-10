@@ -18,9 +18,6 @@ export default function Navbar(props) {
 		console.log(authenticationCheck);
 		if (authenticationCheck.isAuthenticated) {
 			setIsAuthenticated(true);
-		} else {
-			setJwToken("");
-			localStorage.setItem("monorepo_jwt_token", "");
 		}
 	};
 

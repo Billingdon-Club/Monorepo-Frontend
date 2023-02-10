@@ -12,9 +12,10 @@ export default function Snippets(props) {
 			console.log(jwToken);
 			localStorage.setItem("monorepo_jwt_token", token ?? jwToken);
 			setJwToken(token);
-			searchParams.delete("t");
-			setSearchParams(searchParams);
 		}
+
+		searchParams.delete("t");
+		setSearchParams(searchParams);
 	};
 	useEffect(() => {
 		getAccessToken();
