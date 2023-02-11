@@ -1,0 +1,66 @@
+.navbarMain {
+    display: flex;
+    height: 60px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    box-sizing: border-box;
+    padding-left: 3%;
+    padding-right: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: var(--body-color);
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    z-index: 10;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.navbarMain:hover {
+    box-shadow: 0px 3px 5px var(--navbar-color);
+}
+
+.navbarLogoDiv {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    height: 100%;
+    align-items: center;
+}
+
+.navbarLogoContent {
+    font-size: 16pt;
+    font-family: monospace;
+    font-weight: 400;
+    color: white;
+    margin: 0px;
+    cursor: pointer;
+}
+
+.buttonTray {
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    justify-content: space-between;
+}
+
+.profilePic {
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    outline: 1px solid var(--body-color);
+    transition: all 0.2s linear;
+    transform: scale(0.98);
+    position: relative;
+    overflow: hidden;
+}
+
+.profilePic:hover {
+    outline: 1px solid white;
+    transform: scale(1.02)
+}
