@@ -21,9 +21,9 @@
 }
 
 .cursorRadialGradient {
-    background: radial-gradient(circle at center, rgb(30, 35, 39) ,var(--navbar-color), var(--navbar-color));
-    width: 2000px;
-    height: 2000px;
+    background: radial-gradient(circle at center, rgb(27, 31, 35) ,var(--navbar-color), var(--navbar-color));
+    width: 3000px;
+    height: 3000px;
     position: absolute;
     z-index: 2;
 }

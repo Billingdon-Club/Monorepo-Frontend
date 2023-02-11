@@ -1,6 +1,6 @@
 :root {
-    --body-color: rgb(27, 31, 34);
-    --navbar-color: rgb(21, 23, 26);
+    --body-color: #1b1f22;
+    --navbar-color: #15171a;
 }
 
 html, body, #root {
@@ -8,4 +8,11 @@ html, body, #root {
     height: 100vh;
     margin: 0px;
     padding: 0px
+}
+
+.nudgedLeft {
+    margin-left: 2vh;
+}
+.nudgedRight {
+    margin-right: 2vh;
 }

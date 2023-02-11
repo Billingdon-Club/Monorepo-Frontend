@@ -6,13 +6,13 @@ export default function Splash(props) {
 			className='splashMain'
 			onMouseMove={(e) => {
 				document.getElementById("cursorRadialGradient").style.top = `${
-					e.pageY - 1000
+					e.pageY - 1500
 				}px`;
 				document.getElementById("cursorRadialGradient").style.left = `${
-					e.pageX - 1000
+					e.pageX - 1500
 				}px`;
 			}}>
-			<Navbar />
+			<Navbar currentPage='splash' />
 
 			<div className='cursorRadialGradient' id='cursorRadialGradient'></div>
 			<div className='splashContent'>

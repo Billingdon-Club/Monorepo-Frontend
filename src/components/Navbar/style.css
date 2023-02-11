@@ -15,6 +15,12 @@
     left: 0px;
     position: absolute;
     z-index: 10;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.navbarMain:hover {
+    box-shadow: 0px 3px 5px var(--navbar-color);
 }
 
 .navbarLogoDiv {
@@ -31,6 +37,7 @@
     font-weight: 400;
     color: white;
     margin: 0px;
+    cursor: pointer;
 }
 
 .buttonTray {
@@ -40,4 +47,20 @@
     align-items: center;
     width: max-content;
     justify-content: space-between;
+}
+
+.profilePic {
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    outline: 1px solid var(--body-color);
+    transition: all 0.2s linear;
+    transform: scale(0.98);
+    position: relative;
+    overflow: hidden;
+}
+
+.profilePic:hover {
+    outline: 1px solid white;
+    transform: scale(1.02)
 }
