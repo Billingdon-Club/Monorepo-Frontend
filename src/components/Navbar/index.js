@@ -54,13 +54,13 @@ export default function Navbar(props) {
 				<div className='buttonTray'>
 					{isAuthenticated ? (
 						<>
-							<HighlightableButton title='My Snippets' />
-							<HighlightableButton title='Logout' />
+							<HighlightableButton title='my snippets' />
+							<HighlightableButton title='log out' />
 						</>
 					) : (
 						<>
-							<HighlightableButton title='Login' />
-							<HighlightableButton title='Register' />
+							<HighlightableButton title='login' />
+							<HighlightableButton title='register' />
 						</>
 					)}
 				</div>
@@ -68,7 +68,7 @@ export default function Navbar(props) {
 
 			{props.currentPage === "snippets" && (
 				<div className='buttonTray'>
-					<HighlightableButton title='Logout' />
+					<HighlightableButton title='log out' />
 					{profilePic !== "" ? (
 						<img
 							className='profilePic nudgedLeft'
@@ -85,8 +85,8 @@ export default function Navbar(props) {
 
 			{props.currentPage === "profile" && (
 				<div className='buttonTray'>
-					<HighlightableButton title='My Snippets' />
-					<HighlightableButton title='Logout' />
+					<HighlightableButton title='my snippets' />
+					<HighlightableButton title='log out' />
 				</div>
 			)}
 		</div>

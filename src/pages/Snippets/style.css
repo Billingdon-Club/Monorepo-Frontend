@@ -1,9 +1,7 @@
 .snippetsPageTitle {
-    position: absolute;
-    top: 70px;
-    width: 100%;
+    position: relative;
+    width: max-content;
     box-sizing: border-box;
-    padding: 0% 3%;
     font-family: monospace;
     font-weight: 300;
 }
@@ -13,8 +11,68 @@
     width: 100%;
     height: auto;
     position: absolute;
+    flex-direction: column;
     top: 0px;
     bottom: 0px;
     color: white;
     background-color: var(--navbar-color);
+}
+
+
+.snippetsHeader {
+    display: flex;
+    position: relative;
+    top: 70px;
+    flex-direction: row;
+    width: 100%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1%;
+    height: min-content;
+    padding-bottom: 1%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.snippetView {
+    display: flex;
+    width: 100%;
+    height: max-content;
+    max-height: 100%;
+    overflow: scroll;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    top: 60px;
+    bottom: 0px;
+    box-sizing: border-box;
+    padding-left: 3%;
+    padding-right: 3%;
+    position: relative;
+    font-family: monospace;
+}
+
+.individualSnippetView {
+    min-height: max-content;
+    width: 100%;
+    margin: 20px 0px;
+}
+
+.container__editor {
+    font-size: 12pt;
+    font-variant-ligatures: common-ligatures;
+    font-family: monospace;
+    border-radius: 3px;
+    background-color: black;
+    position: relative;
+    width: 100%;
+    height: max-content;
+    max-height: 400px;
+    text-align: center;
+    overflow: scroll;
+}
+
+.container__editor textarea {
+    outline: 0;
 }

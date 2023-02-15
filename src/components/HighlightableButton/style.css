@@ -8,12 +8,27 @@
     text-decoration: none;
     cursor: pointer;
     color: white;
-    transition: all 0.2s ease-out;
+    transition: all 0.1s ease-out;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.addButton {
+    color: var(--navbar-color);
+    background-color: white;
+    border-radius: 30px;
+    width: 150px;
+    height: 50%;
+    transform: scale(0.98);
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .highlightableButtonText {
     font-size: 12pt;
@@ -25,4 +40,10 @@
     transform: scale(1.02);
     color: var(--navbar-color);
     background-color: white;
+}
+
+.addButton:hover {
+    transform: scale(1.05);
+    background-color: green;
+    color: white
 }
