@@ -14,12 +14,14 @@
     justify-content: center;
 }
 
-.addButton {
+.roundButton {
     color: var(--navbar-color);
     background-color: white;
-    border-radius: 30px;
-    width: 150px;
-    height: 50%;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
     transform: scale(0.98);
     position: relative;
     text-decoration: none;
@@ -36,6 +38,7 @@
     font-family: monospace;
 }
 
+
 .highlightableButton:hover {
     transform: scale(1.02);
     color: var(--navbar-color);
@@ -45,5 +48,17 @@
 .addButton:hover {
     transform: scale(1.05);
     background-color: green;
+    color: white
+}
+
+.deleteButton:hover {
+    transform: scale(1.05);
+    background-color: red;
+    color: white
+}
+
+.editButton:hover {
+    transform: scale(1.05);
+    background-color: blue;
     color: white
 }

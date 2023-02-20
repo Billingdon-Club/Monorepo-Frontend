@@ -48,9 +48,32 @@ export default function HighlightableButton(props) {
 				</a>
 			);
 
-		case "add":
+		case "+":
 			return (
-				<div className='addButton'>
+				<div
+					className='roundButton addButton'
+					onClick={props.onClick}
+					style={{marginRight: "1px"}}>
+					<h2 className='highlightableButtonText'>{props.title}</h2>
+				</div>
+			);
+
+		case "🗑":
+			return (
+				<div
+					className='roundButton deleteButton'
+					onClick={props.onClick}
+					style={{marginLeft: "1px"}}>
+					<h2 className='highlightableButtonText'>{props.title}</h2>
+				</div>
+			);
+
+		case "✎":
+			return (
+				<div
+					className='roundButton editButton'
+					onClick={props.onClick}
+					style={{marginRight: "1px"}}>
 					<h2 className='highlightableButtonText'>{props.title}</h2>
 				</div>
 			);

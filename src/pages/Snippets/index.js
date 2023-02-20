@@ -57,30 +57,73 @@ export default function Snippets(props) {
 			<Navbar currentPage='snippets' />
 			<div className='snippetsHeader'>
 				<h1 className='snippetsPageTitle'>my snippets</h1>
-				<HighlightableButton title='add' />
+				<HighlightableButton title='+' />
 			</div>
 			<div className='snippetView'>
-				{allUserSnippets.map((obj) => {
+				{allUserSnippets.map((obj, ind) => {
 					console.log(obj);
+					const objID = `snippet/${obj.id}`;
 					return (
-						<div className='individualSnippetView'>
-							<div
-								style={{
-									display: "flex",
-									flexDirection: "row",
-									width: "100%",
-									justifyContent: "space-between",
-								}}>
-								<h2>{obj.title}</h2>
-								<h2>{obj.language}</h2>
-							</div>
-							<Editor
-								value={obj.content}
-								padding={10}
-								onValueChange={(code) => code}
-								highlight={(code) => highlight(code, languages.js, "js")}
-								className='container__editor'
+						<div className='individualSnippetView' id={`main/${objID}`}>
+							<HighlightableButton
+								title='🗑'
+								onClick={async () => {
+									console.log("delete clicked");
+									const didDelete = await fetchInfo(
+										`/snippets/${obj.id}`,
+										"DELETE",
+										null,
+										jwToken
+									);
+
+									console.log(didDelete);
+
+									if (didDelete.success) {
+										document
+											.getElementById(`main/${objID}`)
+											.classList.add("snippetDeleted");
+									}
+								}}
 							/>
+							<div className='mainSnippetContent'>
+								<div className='snippetsTitleTray'>
+									<h2>{obj.title}</h2>
+									<h2>{obj.language}</h2>
+								</div>
+								<div className='editorHolder'>
+									<div
+										className='copyView'
+										onClick={async () => {
+											const content = document.getElementById(objID).value;
+											await navigator.clipboard.writeText(content);
+
+											document.getElementById(`header/${objID}`).innerText =
+												"content copied";
+										}}
+										onMouseLeave={() => {
+											if (
+												(document.getElementById(`header/${objID}`).innerText =
+													"content copied")
+											) {
+												document.getElementById(`header/${objID}`).innerText =
+													"copy content";
+											}
+										}}>
+										<div>
+											<h2 id={`header/${objID}`}>copy content</h2>
+										</div>
+									</div>
+									<Editor
+										value={obj.content}
+										padding={10}
+										textareaId={objID}
+										onValueChange={(code) => code}
+										highlight={(code) => highlight(code, languages.js, "js")}
+										className='container__editor'
+									/>
+								</div>
+							</div>
+							<HighlightableButton title='✎' />
 						</div>
 					);
 				})}
