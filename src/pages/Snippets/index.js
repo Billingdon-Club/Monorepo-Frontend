@@ -7,9 +7,7 @@ import fetchInfo from "../../utils/fetchInfo";
 
 import Editor from "react-simple-code-editor";
 import {highlight, languages} from "prismjs";
-
 import "prismjs/components";
-
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-java";
 import "prismjs/components/prism-css";
@@ -122,14 +120,14 @@ export default function Snippets(props) {
 							c: {language: languages.c, shorthand: "c"},
 							"c++": {language: languages.cpp, shorthand: "cpp"},
 							css: {language: languages.css, shorthand: "css"},
-							html: {language: languages.html, shorthand: "cshtml"},
+							html: {language: languages.html, shorthand: "html"},
 							go: {language: languages.go, shorthand: "go"},
 							java: {language: languages.java, shorthand: "java"},
 							javascript: {language: languages.js, shorthand: "js"},
-							python: {language: languages.py, shorthand: "py"},
+							python: {language: languages.python, shorthand: "python"},
 							ruby: {language: languages.ruby, shorthand: "ruby"},
 						};
-						const currentlyUnfunctionalLanguages = ["php", "cpp"];
+						const currentlyUnfunctionalLanguages = ["php", "cpp", "c"];
 						return (
 							<div className='individualSnippetView' id={`main/${objID}`}>
 								<HighlightableButton
@@ -241,12 +239,16 @@ export default function Snippets(props) {
 												}
 											}}
 											highlight={(code) => {
-												if (obj.language !== "unknown")
+												if (
+													obj.language !== "unknown" &&
+													!currentlyUnfunctionalLanguages.includes(obj.language)
+												)
 													return highlight(
 														code,
 														languageMap[obj.language].language,
 														languageMap[obj.language].shorthand
 													);
+												return code;
 											}}
 											className='container__editor'
 										/>
