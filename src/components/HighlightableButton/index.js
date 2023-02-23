@@ -68,7 +68,7 @@ export default function HighlightableButton(props) {
 				</div>
 			);
 
-		case "✎":
+		case "📋":
 			return (
 				<div
 					className='roundButton editButton'
