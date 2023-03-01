@@ -21,11 +21,11 @@ import "prismjs/components/prism-ruby";
 import "prismjs/themes/prism-tomorrow.css";
 
 import HighlightableButton from "../../components/HighlightableButton";
-import CreateSnippetOverlay from "../../components/CreateSnippetOverlay";
 
 export default function Snippets(props) {
 	const {jwToken, setJwToken} = useContext(MonorepoContext);
 	const [searchParams, setSearchParams] = useSearchParams();
+	const [messageText, setMessageText] = useState("");
 
 	const [allUserSnippets, setAllUserSnippets] = useState([]);
 
@@ -65,6 +65,7 @@ export default function Snippets(props) {
 		);
 		if (allUserSnippetsQuery.snippets) {
 			setAllUserSnippets(allUserSnippetsQuery.snippets);
+			console.log(allUserSnippetsQuery.snippets);
 		}
 	};
 	useEffect(() => {
@@ -78,7 +79,6 @@ export default function Snippets(props) {
 
 	return (
 		<>
-			<CreateSnippetOverlay />
 			<div
 				className='snippetsMain'
 				onPasteCapture={async (e) => {
@@ -95,27 +95,34 @@ export default function Snippets(props) {
 						);
 
 						if (createdSnippet.success) {
-							navigate(0);
+							getAllUserSnippets();
 						}
 					}
 				}}>
 				<Navbar currentPage='snippets' />
 				<div className='snippetsHeader'>
 					<h1 className='snippetsPageTitle'>my snippets</h1>
-					<HighlightableButton
-						title='+'
-						onClick={() => {
-							document.getElementById("createSnippetOverlayMain").style.display =
-								"flex";
-							document
-								.getElementById("createSnippetOverlayMain")
-								.classList.toggle("changeSnippetOverlayAppearence");
-						}}
-					/>
+					<h2
+						id='snippetsMessageText'
+						onTransitionEnd={() => {
+							if (
+								document.getElementById("snippetsMessageText").style.display !== "none"
+							) {
+								document.getElementById("snippetsMessageText").style.display = "none";
+							}
+						}}>
+						{messageText}
+					</h2>
+					<h4 className='snippetsPageSubtitle'>
+						Paste anywhere on the page
+						<br />
+						to create a snippet
+					</h4>
 				</div>
 				<div className='snippetView'>
 					{allUserSnippets.map((obj, ind) => {
-						const objID = `snippet/${obj.id}`;
+						const objID = `snippet/${obj._id}`;
+						console.log(objID);
 						const languageMap = {
 							c: {language: languages.c, shorthand: "c"},
 							"c++": {language: languages.cpp, shorthand: "cpp"},
@@ -135,7 +142,7 @@ export default function Snippets(props) {
 									onClick={async () => {
 										console.log("delete clicked");
 										const didDelete = await fetchInfo(
-											`/snippets/${obj.id}`,
+											`/snippets/${obj._id}`,
 											"DELETE",
 											null,
 											jwToken
@@ -161,7 +168,7 @@ export default function Snippets(props) {
 
 													const val = event.target.value;
 													const result = await fetchInfo(
-														`/snippets/${obj.id}`,
+														`/snippets/${obj._id}`,
 														"PATCH",
 														{
 															language: val,
@@ -169,7 +176,7 @@ export default function Snippets(props) {
 														jwToken
 													);
 													if (result.success) {
-														console.log(`Snippet ${obj.id} language successfully updated`);
+														console.log(`Snippet ${obj._id} language successfully updated`);
 													} else {
 														console.log(result);
 													}
@@ -224,7 +231,7 @@ export default function Snippets(props) {
 											onBlur={async () => {
 												const val = document.getElementById(objID).value;
 												const result = await fetchInfo(
-													`/snippets/${obj.id}`,
+													`/snippets/${obj._id}`,
 													"PATCH",
 													{
 														content: String(val),
@@ -233,7 +240,7 @@ export default function Snippets(props) {
 												);
 												console.log(result);
 												if (result.success) {
-													console.log(`Snippet ${obj.id} successfully updated`);
+													console.log(`Snippet ${obj._id} successfully updated`);
 												} else {
 													console.log(result);
 												}
