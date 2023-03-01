@@ -16,12 +16,12 @@
 
 .roundButton {
     color: var(--navbar-color);
-    background-color: white;
-    border-radius: 20px;
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    min-height: 40px;
+    background-color: var(--body-color);
+    border-radius: 30px;
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    min-height: 60px;
     transform: scale(0.98);
     position: relative;
     text-decoration: none;
@@ -38,6 +38,9 @@
     font-family: monospace;
 }
 
+.emojiButtonText {
+    font-size: 20pt;
+}
 
 .highlightableButton:hover {
     transform: scale(1.02);
@@ -53,12 +56,12 @@
 
 .deleteButton:hover {
     transform: scale(1.05);
-    background-color: red;
+    background-color: rgb(105, 5, 5);
     color: white
 }
 
 .editButton:hover {
     transform: scale(1.05);
-    background-color: blue;
+    background-color: black;
     color: white
 }
