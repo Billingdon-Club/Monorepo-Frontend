@@ -22,6 +22,8 @@ export default function Navbar(props) {
 		console.log(authenticationCheck);
 		if (authenticationCheck.isAuthenticated) {
 			setIsAuthenticated(true);
+		} else {
+			navigate("/");
 		}
 	};
 
