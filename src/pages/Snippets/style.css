@@ -7,6 +7,14 @@
     margin-left: 1px;
 }
 
+.snippetOwner {
+    text-decoration: none;
+    cursor: pointer;
+}
+.snippetOwner:hover {
+    text-decoration: underline;
+}
+
 .snippetsMessageText {
     position: relative;
     width: max-content;

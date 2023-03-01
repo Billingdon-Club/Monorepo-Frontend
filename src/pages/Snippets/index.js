@@ -27,6 +27,8 @@ export default function Snippets(props) {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [messageText, setMessageText] = useState("");
 
+	const [hasAdminAccess, setHasAdminAccess] = useState(false);
+
 	const [allUserSnippets, setAllUserSnippets] = useState([]);
 
 	const navigate = useNavigate();
@@ -56,16 +58,32 @@ export default function Snippets(props) {
 		return [text, activeEl.selectionStart, activeEl.selectionEnd];
 	}
 
-	const getAllUserSnippets = async () => {
-		const allUserSnippetsQuery = await fetchInfo(
-			"/snippets/",
-			"GET",
-			null,
-			jwToken
-		);
-		if (allUserSnippetsQuery.snippets) {
-			setAllUserSnippets(allUserSnippetsQuery.snippets);
-			console.log(allUserSnippetsQuery.snippets);
+	const getAllUserSnippets = async (pageNum = 1) => {
+		const isAdminRequest = await fetchInfo("/isAdmin", "GET", null, jwToken);
+		console.log(isAdminRequest);
+		if (isAdminRequest.isAdmin) {
+			setHasAdminAccess(true);
+			const allTotalSnippets = await fetchInfo(
+				`/snippets/all/${pageNum}`,
+				"GET",
+				null,
+				jwToken
+			);
+			if (allTotalSnippets.snippets) {
+				setAllUserSnippets(allTotalSnippets.snippets);
+				console.log(allTotalSnippets.snippets);
+			}
+		} else {
+			const allUserSnippetsQuery = await fetchInfo(
+				`/snippets/${pageNum}`,
+				"GET",
+				null,
+				jwToken
+			);
+			if (allUserSnippetsQuery.snippets) {
+				setAllUserSnippets(allUserSnippetsQuery.snippets);
+				console.log(allUserSnippetsQuery.snippets);
+			}
 		}
 	};
 	useEffect(() => {
@@ -73,7 +91,6 @@ export default function Snippets(props) {
 		if (!jwToken) {
 			navigate("/");
 		}
-
 		getAllUserSnippets();
 	}, []);
 
@@ -101,7 +118,18 @@ export default function Snippets(props) {
 				}}>
 				<Navbar currentPage='snippets' />
 				<div className='snippetsHeader'>
-					<h1 className='snippetsPageTitle'>my snippets</h1>
+					<h1 className='snippetsPageTitle'>
+						{hasAdminAccess ? (
+							<>
+								<span style={{color: "slategray"}}>admin</span> snippets{" "}
+								<span style={{color: "slategray"}}>view</span>
+							</>
+						) : (
+							<>
+								<span>my</span> snippets
+							</>
+						)}
+					</h1>
 					<h2
 						id='snippetsMessageText'
 						onTransitionEnd={() => {
@@ -119,7 +147,18 @@ export default function Snippets(props) {
 						to create a snippet
 					</h4>
 				</div>
-				<div className='snippetView'>
+				<div
+					className='snippetView'
+					onScroll={(event) => {
+						if (
+							event.target.scrollHeight -
+								event.target.scrollTop -
+								event.target.clientHeight <
+							1
+						) {
+							console.log("scrolled to bottom");
+						}
+					}}>
 					{allUserSnippets.map((obj, ind) => {
 						const objID = `snippet/${obj._id}`;
 						console.log(objID);
@@ -198,6 +237,11 @@ export default function Snippets(props) {
 												<option value={"unknown"}>Unknown</option>
 											</select>
 										</h4>
+										{hasAdminAccess && (
+											<h4 onClick={() => navigate("/profile")} className='snippetOwner'>
+												{obj.owner.username}
+											</h4>
+										)}
 									</div>
 									<div className='editorHolder'>
 										<Editor
