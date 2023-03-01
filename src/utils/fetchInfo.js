@@ -6,13 +6,13 @@ export default async function fetchInfo(
 ) {
 	const requestObject = {
 		method: method,
-		headers: {
-			"Content-Type": "application/json",
-		},
+		headers: {"Content-Type": "application/json"},
 	};
 
 	if (information !== null) {
-		requestObject["body"] = information;
+		requestObject["body"] = JSON.stringify(information);
+		requestObject.headers["Content-Length"] =
+			JSON.stringify(information).length.toString();
 	}
 	console.log(authorizationToken);
 	if (

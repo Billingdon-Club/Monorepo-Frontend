@@ -16,7 +16,7 @@
     position: absolute;
     z-index: 10;
     box-shadow: none;
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
 }
 
 .navbarMain:hover {
@@ -54,7 +54,7 @@
     width: 40px;
     height: 40px;
     outline: 1px solid var(--body-color);
-    transition: all 0.2s linear;
+    transition: all 0.1s ease;
     transform: scale(0.98);
     position: relative;
     overflow: hidden;

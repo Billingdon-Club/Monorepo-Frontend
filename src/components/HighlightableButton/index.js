@@ -8,7 +8,7 @@ export default function HighlightableButton(props) {
 
 	const navigate = useNavigate();
 	switch (props.title) {
-		case "My Snippets":
+		case "my snippets":
 			return (
 				<div
 					onClick={() => {
@@ -19,7 +19,7 @@ export default function HighlightableButton(props) {
 				</div>
 			);
 
-		case "Login":
+		case "login":
 			return (
 				<a
 					href={process.env.REACT_APP_BACKEND_URL + "/login"}
@@ -27,7 +27,7 @@ export default function HighlightableButton(props) {
 					<h2 className='highlightableButtonText'>{props.title}</h2>
 				</a>
 			);
-		case "Register":
+		case "register":
 			return (
 				<a
 					href={process.env.REACT_APP_BACKEND_URL + "/register"}
@@ -35,7 +35,7 @@ export default function HighlightableButton(props) {
 					<h2 className='highlightableButtonText'>{props.title}</h2>
 				</a>
 			);
-		case "Logout":
+		case "log out":
 			return (
 				<a
 					href={process.env.REACT_APP_BACKEND_URL + "/logout-direct"}
@@ -46,6 +46,36 @@ export default function HighlightableButton(props) {
 					}}>
 					<h2 className='highlightableButtonText'>{props.title}</h2>
 				</a>
+			);
+
+		case "+":
+			return (
+				<div
+					className='roundButton addButton'
+					onClick={props.onClick}
+					style={{marginRight: "1px"}}>
+					<h2 className='highlightableButtonText'>{props.title}</h2>
+				</div>
+			);
+
+		case "🗑":
+			return (
+				<div
+					className='roundButton deleteButton'
+					onClick={props.onClick}
+					style={{marginLeft: "1px"}}>
+					<h2 className='highlightableButtonText'>{props.title}</h2>
+				</div>
+			);
+
+		case "📋":
+			return (
+				<div
+					className='roundButton editButton'
+					onClick={props.onClick}
+					style={{marginRight: "1px"}}>
+					<h2 className='highlightableButtonText'>{props.title}</h2>
+				</div>
 			);
 
 		default:
