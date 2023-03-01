@@ -157,7 +157,6 @@ export default function Snippets(props) {
 								<div className='mainSnippetContent'>
 									<div className='snippetsTitleTray'>
 										<h4>
-											Lang: {obj.language}
 											<select
 												id={`select/${objID}`}
 												value={obj.language}
