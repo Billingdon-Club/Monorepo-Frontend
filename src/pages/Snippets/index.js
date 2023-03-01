@@ -160,6 +160,11 @@ export default function Snippets(props) {
 											<select
 												id={`select/${objID}`}
 												value={obj.language}
+												style={{
+													background: "rgb(0, 0, 0, 0.3)",
+													border: "none",
+													color: "white",
+												}}
 												onChange={async (event) => {
 													const newArr = [...allUserSnippets];
 													newArr[ind].language = event.target.value;
