@@ -26,6 +26,8 @@ export default function Snippets(props) {
 	const {jwToken, setJwToken} = useContext(MonorepoContext);
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [messageText, setMessageText] = useState("");
+	const [pageNum, setPageNum] = useState(0);
+	const [totalAvailableSnippets, setTotalAvailableSnippets] = useState(1);
 
 	const [hasAdminAccess, setHasAdminAccess] = useState(false);
 
@@ -41,6 +43,9 @@ export default function Snippets(props) {
 		}
 		searchParams.delete("t");
 		setSearchParams(searchParams);
+
+		if (!token && (jwToken === null || jwToken == "null" || jwToken === ""))
+			navigate("/");
 	};
 
 	function getSelectionText() {
@@ -72,6 +77,11 @@ export default function Snippets(props) {
 			if (allTotalSnippets.snippets) {
 				setAllUserSnippets(allTotalSnippets.snippets);
 				console.log(allTotalSnippets.snippets);
+				if (pageNum * 15 > totalAvailableSnippets)
+					setPageNum(totalAvailableSnippets / 15);
+				else setPageNum(pageNum);
+
+				setTotalAvailableSnippets(allTotalSnippets.total);
 			}
 		} else {
 			const allUserSnippetsQuery = await fetchInfo(
@@ -83,14 +93,16 @@ export default function Snippets(props) {
 			if (allUserSnippetsQuery.snippets) {
 				setAllUserSnippets(allUserSnippetsQuery.snippets);
 				console.log(allUserSnippetsQuery.snippets);
+				if (pageNum * 15 > totalAvailableSnippets)
+					setPageNum(totalAvailableSnippets / 15);
+				else setPageNum(pageNum);
+
+				setTotalAvailableSnippets(allUserSnippetsQuery.total);
 			}
 		}
 	};
 	useEffect(() => {
 		getAccessToken();
-		if (!jwToken) {
-			navigate("/");
-		}
 		getAllUserSnippets();
 	}, []);
 
@@ -129,6 +141,10 @@ export default function Snippets(props) {
 								<span>my</span> snippets
 							</>
 						)}
+
+						<h4 style={{fontSize: "10pt", marginBottom: "0px", marginTop: "5px"}}>
+							{pageNum * 15}/{totalAvailableSnippets}
+						</h4>
 					</h1>
 					<h2
 						id='snippetsMessageText'
@@ -156,7 +172,9 @@ export default function Snippets(props) {
 								event.target.clientHeight <
 							1
 						) {
-							console.log("scrolled to bottom");
+							if (pageNum * 15 < totalAvailableSnippets) {
+								getAllUserSnippets(pageNum + 1);
+							}
 						}
 					}}>
 					{allUserSnippets.map((obj, ind) => {
@@ -203,6 +221,7 @@ export default function Snippets(props) {
 													background: "rgb(0, 0, 0, 0.3)",
 													border: "none",
 													color: "white",
+													fontFamily: "monospace",
 												}}
 												onChange={async (event) => {
 													const newArr = [...allUserSnippets];

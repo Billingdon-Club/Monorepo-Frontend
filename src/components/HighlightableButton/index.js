@@ -54,12 +54,18 @@ export default function HighlightableButton(props) {
 					className='largeHighlightableButton'
 					onClick={() => {
 						if (jwToken) {
-							window.location = `${process.env.REACT_APP_BACKEND_URL}"/login"`;
+							window.location.href = `${process.env.REACT_APP_BACKEND_URL}/login`;
 						} else {
-							window.location = `${process.env.REACT_APP_BACKEND_URL}"/register"`;
+							window.location.href = `${process.env.REACT_APP_BACKEND_URL}/register`;
 						}
 					}}>
 					<h2 className='largeHighlightableButtonText'>{props.title}</h2>
+				</a>
+			);
+		case "load more":
+			return (
+				<a className='highlightableButton loadButton' onClick={props.onClick}>
+					<h2 className='highlightableButtonText'>{props.title}</h2>
 				</a>
 			);
 

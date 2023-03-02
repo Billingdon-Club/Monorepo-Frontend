@@ -93,3 +93,7 @@
     background-color: black;
     color: white
 }
+
+.loadButton {
+    height: 50px !important
+}
