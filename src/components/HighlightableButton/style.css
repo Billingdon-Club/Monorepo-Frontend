@@ -54,6 +54,34 @@
     color: white
 }
 
+.largeHighlightableButton {
+    border-radius: 60px;
+    background-color: transparent;
+    width: 150px;
+    height: 50px;
+    transform: scale(0.98);
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    color: rgb(32, 192, 32);
+    transition: all 0.1s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.largeHighlightableButton:hover {
+    transform: scale(1.02);
+    background-color: rgb(32, 192, 32);
+    color: white
+}
+
+.largeHighlightableButtonText {
+    font-size: 14pt;
+    font-weight: 200;
+    font-family: monospace;
+}
+
 .deleteButton:hover {
     transform: scale(1.05);
     background-color: rgb(105, 5, 5);
@@ -64,4 +92,8 @@
     transform: scale(1.05);
     background-color: black;
     color: white
+}
+
+.loadButton {
+    height: 50px !important
 }

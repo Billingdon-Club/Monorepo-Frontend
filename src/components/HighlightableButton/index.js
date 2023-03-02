@@ -4,7 +4,7 @@ import {MonorepoContext} from "../../context/MonorepoContext";
 import "./style.css";
 
 export default function HighlightableButton(props) {
-	const {setJwToken} = useContext(MonorepoContext);
+	const {jwToken, setJwToken} = useContext(MonorepoContext);
 
 	const navigate = useNavigate();
 	switch (props.title) {
@@ -44,6 +44,27 @@ export default function HighlightableButton(props) {
 						setJwToken("");
 						localStorage.setItem("monorepo_jwt_token", "");
 					}}>
+					<h2 className='highlightableButtonText'>{props.title}</h2>
+				</a>
+			);
+
+		case "proceed":
+			return (
+				<a
+					className='largeHighlightableButton'
+					onClick={() => {
+						if (jwToken) {
+							window.location.href = `${process.env.REACT_APP_BACKEND_URL}/login`;
+						} else {
+							window.location.href = `${process.env.REACT_APP_BACKEND_URL}/register`;
+						}
+					}}>
+					<h2 className='largeHighlightableButtonText'>{props.title}</h2>
+				</a>
+			);
+		case "load more":
+			return (
+				<a className='highlightableButton loadButton' onClick={props.onClick}>
 					<h2 className='highlightableButtonText'>{props.title}</h2>
 				</a>
 			);

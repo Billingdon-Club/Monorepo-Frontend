@@ -12,27 +12,18 @@
     top: 60px;
     bottom: 0px;
     position: absolute;
-    align-items: left;
+    background-color: var(--navbar-color);
+    font-family: monospace;
+    color: white;
+    align-items: center;
     flex-direction: column;
-    justify-content: center;
+    justify-content: top;
     box-sizing: border-box;
     padding: 3%;
     z-index: 2;
 }
 
-.cursorRadialGradient {
-    background: radial-gradient(circle at center, rgb(27, 31, 35) ,var(--navbar-color), var(--navbar-color));
-    width: 3000px;
-    height: 3000px;
-    position: absolute;
-    z-index: 2;
-}
-
-.splashTitle {
+.splashBody {
     font-weight: 300;
-    font-size: 76pt;
-    color: white;
-    font-family: monospace;
-    text-shadow: -5px 5px 5px var(--navbar-color);
-    z-index: 3;
+    font-size: 14pt;
 }

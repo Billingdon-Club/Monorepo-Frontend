@@ -9,12 +9,32 @@
     background-color: var(--navbar-color);
 }
 
+.profilePicFull {
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    outline: 1px solid white;
+    transition: all 0.1s ease;
+    position: relative;
+    overflow: hidden;
+    margin-left: 2vh;
+}
+
 .tempUserInfo {
-    position: absolute;
+    position: relative;
     top: 70px;
     width: 100%;
     box-sizing: border-box;
     padding: 0% 3%;
     font-family: monospace;
     font-weight: 300;
+}
+
+.profileSection {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 80%;
+    width: 100%;
+    top: 70px;
 }
