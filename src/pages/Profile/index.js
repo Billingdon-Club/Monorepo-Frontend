@@ -50,10 +50,13 @@ export default function Profile(props) {
 								<span className='infoLabel'>Email: </span>
 								{value.email}
 							</h1>
+							{value.role === "admin" && (
+								<h1 className='tempUserInfo'>
+									<span className='infoLabel'>Role: </span>{" "}
+									<span style={{color: "rgb(32, 192, 32)"}}>{value.role}</span>
+								</h1>
+							)}
 						</div>
-						{value.role === "admin" && (
-							<h1 className='tempUserInfo'>Role: {value.role}</h1>
-						)}
 					</div>
 				);
 			})}
