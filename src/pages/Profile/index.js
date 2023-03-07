@@ -13,6 +13,16 @@ export default function Profile(props) {
 		const user = await fetchInfo("/me", "GET", null, jwToken);
 		if (user.user) {
 			setUserObject([user.user]);
+		} else {
+			setUserObject([
+				{
+					profilePic:
+						"https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?cs=srgb&dl=pexels-pixabay-45201.jpg&fm=jpg",
+					username: "wowWhatAMan",
+					email: "steve@gary.com",
+					name: "Steven Gareth",
+				},
+			]);
 		}
 	};
 
@@ -27,9 +37,20 @@ export default function Profile(props) {
 				return (
 					<div className='profileSection nudgedRight'>
 						<img className='profilePicFull' src={value.profilePic} />
-						<h1 className='tempUserInfo'>Name: {value.name}</h1>
-						<h1 className='tempUserInfo'>Username: {value.username}</h1>
-						<h1 className='tempUserInfo'>Email: {value.email}</h1>
+						<div className='profileInformationSection'>
+							<h1 className='tempUserInfo'>
+								<span className='infoLabel'>Name: </span>
+								{value.name}
+							</h1>
+							<h1 className='tempUserInfo'>
+								<span className='infoLabel'>Username: </span>
+								{value.username}
+							</h1>
+							<h1 className='tempUserInfo'>
+								<span className='infoLabel'>Email: </span>
+								{value.email}
+							</h1>
+						</div>
 						{value.role === "admin" && (
 							<h1 className='tempUserInfo'>Role: {value.role}</h1>
 						)}
