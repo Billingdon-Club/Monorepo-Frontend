@@ -27,7 +27,8 @@ export default function Snippets(props) {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [messageText, setMessageText] = useState("");
 	const [pageNum, setPageNum] = useState(0);
-	const [totalAvailableSnippets, setTotalAvailableSnippets] = useState(0);
+	const [totalAvailableSnippets, setTotalAvailableSnippets] =
+		useState(123456789);
 
 	const [hasAdminAccess, setHasAdminAccess] = useState(false);
 
@@ -98,6 +99,9 @@ export default function Snippets(props) {
 				else setPageNum(pageNum);
 
 				setTotalAvailableSnippets(allUserSnippetsQuery.total);
+			} else {
+				setTotalAvailableSnippets(0);
+				setPageNum(0);
 			}
 		}
 	};
