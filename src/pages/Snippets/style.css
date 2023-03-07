@@ -192,3 +192,14 @@
 .container__editor textarea {
     outline: 0;
 }
+
+.loadingMore {
+    font-size: 12pt;
+    color: slategray;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 100%
+}

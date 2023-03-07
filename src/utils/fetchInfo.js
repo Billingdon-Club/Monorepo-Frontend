@@ -20,7 +20,9 @@ export default async function fetchInfo(
 		authorizationToken !== null &&
 		authorizationToken != "null"
 	) {
-		requestObject.headers["Authorization"] = `Bearer ${authorizationToken}`;
+		requestObject.headers["Authorization"] = `Bearer ${
+			authorizationToken + "//" + process.env.REACT_APP_FRONTEND_KEY
+		}`;
 	}
 
 	console.log(requestObject);
@@ -29,7 +31,7 @@ export default async function fetchInfo(
 		process.env.REACT_APP_BACKEND_URL + extension,
 		requestObject
 	);
-	console.log(result, process.env.BACKEND_URL + extension);
+	console.log(result, process.env.REACT_APP_BACKEND_URL + extension);
 	const data = await result.json();
 	return data;
 }

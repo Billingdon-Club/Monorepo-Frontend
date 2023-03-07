@@ -27,7 +27,8 @@ export default function Snippets(props) {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [messageText, setMessageText] = useState("");
 	const [pageNum, setPageNum] = useState(0);
-	const [totalAvailableSnippets, setTotalAvailableSnippets] = useState(1);
+	const [totalAvailableSnippets, setTotalAvailableSnippets] =
+		useState(123456789101112);
 
 	const [hasAdminAccess, setHasAdminAccess] = useState(false);
 
@@ -338,6 +339,12 @@ export default function Snippets(props) {
 							</div>
 						);
 					})}
+
+					<div className='loadingMore'>
+						{pageNum * 15 < totalAvailableSnippets
+							? "loading more..."
+							: `viewing all ${totalAvailableSnippets} of your snippets`}
+					</div>
 				</div>
 			</div>
 		</>
