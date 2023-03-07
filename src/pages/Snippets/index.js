@@ -27,8 +27,7 @@ export default function Snippets(props) {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [messageText, setMessageText] = useState("");
 	const [pageNum, setPageNum] = useState(0);
-	const [totalAvailableSnippets, setTotalAvailableSnippets] =
-		useState(123456789101112);
+	const [totalAvailableSnippets, setTotalAvailableSnippets] = useState(0);
 
 	const [hasAdminAccess, setHasAdminAccess] = useState(false);
 
@@ -126,6 +125,7 @@ export default function Snippets(props) {
 
 						if (createdSnippet.success) {
 							getAllUserSnippets();
+							setMessageText("Added new snippet");
 						}
 					}
 				}}>
@@ -150,6 +150,10 @@ export default function Snippets(props) {
 					<h2
 						id='snippetsMessageText'
 						onTransitionEnd={() => {
+							if (document.getElementById("snippetsMessageText").style.opacity === 1) {
+								document.getElementById("snippetsMessageText").style.opacity = 0;
+							}
+
 							if (
 								document.getElementById("snippetsMessageText").style.display !== "none"
 							) {
@@ -178,6 +182,11 @@ export default function Snippets(props) {
 							}
 						}
 					}}>
+					{allUserSnippets.length === 0 && (
+						<div className='loadingMore'>
+							no snippets. paste anywhere to create one!
+						</div>
+					)}
 					{allUserSnippets.map((obj, ind) => {
 						const objID = `snippet/${obj._id}`;
 						console.log(objID);
@@ -341,9 +350,13 @@ export default function Snippets(props) {
 					})}
 
 					<div className='loadingMore'>
-						{pageNum * 15 < totalAvailableSnippets
-							? "loading more..."
-							: `viewing all ${totalAvailableSnippets} of your snippets`}
+						{allUserSnippets.length > 0 && (
+							<>
+								{pageNum * 15 < totalAvailableSnippets
+									? "loading more..."
+									: `viewing all ${totalAvailableSnippets} of your snippets`}
+							</>
+						)}
 					</div>
 				</div>
 			</div>
