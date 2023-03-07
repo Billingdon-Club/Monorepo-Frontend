@@ -23,7 +23,7 @@ export default function Navbar(props) {
 		if (authenticationCheck.isAuthenticated) {
 			setIsAuthenticated(true);
 		} else {
-			navigate("/");
+			// navigate("/");
 		}
 	};
 
